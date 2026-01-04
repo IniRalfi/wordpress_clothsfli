@@ -1,0 +1,62 @@
+services:
+  #1. Database
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD}
+    networks:
+      - wp_network
+    command: --innodb-buffer-pool-size=16M # Optimasi RAM untuk MYSQL
+
+  #2. Wordpress
+  wordpress:
+    user: "1000:1000"
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - "8080:80"
+    volumes:
+      #Ini bakal kesimpan local
+      - ./wp-content:/var/www/html/wp-content
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+    networks:
+      - wp_network
+
+    #WP_CLI
+  cli:
+    user: "1000:1000"
+    depends_on:
+      - db
+      - wordpress
+    image: wordpress:cli
+    volumes:
+      #Ini bakal kesimpan local
+      - ./wp-content:/var/www/html/wp-content
+    environment:
+      PHP_MEMORY_LIMIT: 512M
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD}
+
+    command: tail -f /dev/null
+    networks:
+      - wp_network
+
+volumes:
+  db_data:
+
+networks:
+  wp_network:
+    driver: bridge

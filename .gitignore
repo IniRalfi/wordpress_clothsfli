@@ -1,0 +1,69 @@
+# --- SISTEM OPERASI ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- EDITOR & IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.project
+.settings/
+
+# --- KEAMANAN & KREDENSIAL (SANGAT PENTING) ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+auth.json
+
+# --- DEPENDENSI / PACKAGES ---
+node_modules/
+bower_components/
+vendor/
+.venv/
+venv/
+env/
+lib/
+bin/
+obj/
+
+# --- HASIL BUILD & OUTPUT ---
+dist/
+build/
+out/
+*.exe
+*.dll
+*.so
+*.class
+*.pyc
+
+# --- LOGS & CACHE ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.cache/
+.sass-cache/
+.eslintcache
+
+# --- DATABASE ---
+*.sqlite
+*.db
+db_data/
+
+# 3. FOLDER USER 
+/wp-content/uploads/
+
+# 4. CACHE & TEMP
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/backups/
+/wp-content/w3tc-config/  # Kalau pakai plugin W3 Total Cache
+
+Thumbs.db
+*.log
