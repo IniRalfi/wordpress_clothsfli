@@ -1,3 +1,1 @@
 # wordpress_clothsfli
-
-mantap
