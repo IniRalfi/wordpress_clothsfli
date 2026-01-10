@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
       - wp_network
     command: --innodb-buffer-pool-size=16M # Optimasi RAM untuk MYSQL
@@ -48,7 +48,7 @@ services:
       PHP_MEMORY_LIMIT: 512M
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
     command: tail -f /dev/null
     networks:
